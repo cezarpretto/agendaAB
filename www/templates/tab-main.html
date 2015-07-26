@@ -1,0 +1,22 @@
+<ion-view view-title="Agenda Telefônica AB">
+  <ion-content class="padding">
+    <form ng-submit="buscar()" name="frmBusca">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="search" placeholder="Buscar" ng-model="txtBusca.text">
+        </label>
+      </div>
+    </form>
+    <br>
+    <div class="list">
+      <div class="item item-button-right" ng-repeat="r in listaResultados">
+        <h2>{{r.nome}}</h2>
+        <p>{{r.numero}}</p>
+        <button class="button button-positive">
+          <i class="icon ion-ios-telephone"></i>
+        </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
