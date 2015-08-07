@@ -5,16 +5,21 @@ angular.module('starter.controllers', [])
   $scope.txtBusca = {text: undefined};
 
   $scope.buscar = function(){
-    console.log($scope.txtBusca.text);
-    busca.buscar($scope.txtBusca.text).success(function(retorno){
-      console.log(retorno);
-      $scope.listaResultados = retorno;
-      $scope.txtBusca.text = undefined;
-    }).error(function(erro){
-      console.error(erro);
-      $scope.txtBusca.text = undefined;
-    });
+    if($scope.txtBusca.text != undefined){
+      busca.loading('show');
+      busca.buscar($scope.txtBusca.text).success(function(retorno){
+        $scope.listaResultados = retorno;
+        $scope.txtBusca.text = undefined;
+        busca.loading('hide');
+      }).error(function(erro){
+        $scope.txtBusca.text = undefined;
+        busca.loading('hide');
+        busca.alert('A pesquisa não retornou nenhum resultado!');
+      });
+    }
   };
+
+
 }])
 
 .controller('ChatsCtrl', function($scope) {
